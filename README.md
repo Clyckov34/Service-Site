@@ -163,7 +163,7 @@
                     </ul>
                 <li>Site</li>
                     <ul>
-                        <li><code>DOMAIN</code> - Домен сайта</li>
+                        <li><code>DOMAIN</code> - Домен сайта. Образец: mydomen.ru</li>
                     </ul>        
             </ol>
     </ol>
