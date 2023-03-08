@@ -1,0 +1,30 @@
+{{ define "install_form.html" }}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="/img/favicon.jpg">
+    <title>Настройка личного кабинета и сервера</title>
+
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/mobile/default.css">
+</head>
+<body>
+    <article class="Center">
+        <h2>Настройка личного кабинета и сервера</h2>
+        <div class="Form-Order-Install">
+            <form action="/install/reg" method="POST" class="Form-Order-input">
+                <input type="text" name="FirstName" placeholder="Ф.И.О. *" required>
+                <input type="email" name="Email" placeholder="Email *" required>
+                <input type="text" name="Login" placeholder="Login *" required>
+                <input type="password" name="Password" placeholder="Password *" required>
+                <input type="submit" value="Зарегистрировать">
+            </form>
+        </div>
+    </article>    
+</body>
+</html>
+
+{{ end }}

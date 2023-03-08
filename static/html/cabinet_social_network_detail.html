@@ -1,0 +1,37 @@
+{{ define "cabinet_social_network_detail.html" }}
+{{ template "cabinet_header.html" }}
+
+<head>
+    <title>Группы соц.сетей</title>
+</head>
+
+<article class="Center">
+    <h1>Группа социальной сети</h1>
+
+    <div class="Back"><a href="/admin/cabinet/social-network">Назад</a></div>
+
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Изменить группу {{ .Title }}</p></div>  
+            <form class="Form-Order-input" action="/admin/cabinet/social-network/edit" method="POST">
+                <select name="Icon" required>
+                    <option value="">Выберите соц.сеть</option>
+                    {{ range .Icon }}
+                        <option value="{{ .Id }}">{{ .Name }}</option>
+                    {{ end }}
+                </select>
+                <input type="url" name="Url" value="{{ .Url }}" placeholder="URL группы социальной сети *" required>
+                <input type="hidden" name="Id" value="{{ .Id }}" required>
+                <input type="submit" value="Изменить">
+            </form>
+            
+            <form class="Form-Order-input" action="/admin/cabinet/social-network/delete" method="POST">
+                <input type="hidden" name="Id" value="{{ .Id }}" required>
+                <input type="submit" value="Удалить" onclick="return Question('Удалить ?')">
+            </form>
+        </div>
+    </div>
+</article>
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

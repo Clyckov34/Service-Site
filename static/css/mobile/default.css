@@ -1,0 +1,85 @@
+@media all and (max-width: 1200px){
+
+    .Center {
+        width: 100%;
+    }
+
+
+    /* ______________________HEADER_____________________ */
+
+    header {
+        height: 700px;
+    }
+
+    /* Меню */
+    .Menu-header, .Menu {
+        display: flex;
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .Menu, .Info {
+        width: 100%;
+    }
+
+    .Menu a {
+        padding: 20px;
+        background: rgba(0,0,0,0.6);
+        border: none;
+    }
+
+    .Info {
+        align-items: center;
+        background: rgba(0,0,0,0.6);
+    }
+
+    .Info a {
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    .Logo {
+        margin-top: 50px;
+    }
+
+    /* ______________________CONTENT_____________________ */
+
+    .Ofers, .Presents, .Portfolios, .Form-Order-input, .Socials, .Form-Orders {
+        flex-direction: column;
+    }
+
+    .Ofer, .Present, .Portfolio, .Social, .Form-Order, .Form-Orders, .Error {
+        margin: 0;
+        max-width: none;
+        width: 100%;
+        margin-bottom: 20px;
+        border: none;
+    }
+
+    /* Портфолио */
+    .Portfolio {
+        height: auto;
+    }
+
+    /* Оформления заказа */
+
+    .Form-Order-input input {
+        width: auto;
+    }
+
+    .Form-Order input[type="submit"], .Form-Order-Install form input[type="submit"]{
+        height: 40px;
+    }
+
+    .Form-Order textarea {
+        height: 100px;
+    }
+
+    /* Кнопка вверх */
+    #myBtn {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+    }
+
+}

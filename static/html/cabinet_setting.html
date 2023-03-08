@@ -1,0 +1,47 @@
+{{ define "cabinet_setting.html" }}
+{{ template "cabinet_header.html" }}
+
+<head>
+    <title>Настройки ЛК</title>
+</head>
+
+<article class="Center">
+    <h1>Настройки личного кабинета</h1>
+
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Изменить Password</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/setting/password" method="POST">
+                <input type="password" name="NowPassword" placeholder="Старый пароль *" required>
+                <input type="password" name="NewPassword" placeholder="Новый пароль *" required>
+                <input type="password" name="Repeat" placeholder="Повторите новый пароль *" required>
+                <input type="submit"  value="Изменить" onclick="return Question('Изменить ?')">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Изменить Login</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/setting/login" method="POST">
+                <input type="text" name="Login" value="{{ .Login }}" placeholder="Новый Логин *" required>
+                <input type="submit" value="Изменить" onclick="return Question('Изменить ?')">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Изменить Email</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/setting/email" method="POST">
+                <input type="email" name="Email" value="{{ .Email }}" placeholder="Новая электронная почта *" required>
+                <input type="submit" value="Изменить" onclick="return Question('Изменить ?')">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Изменить Ф.И.О.</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/setting/full-name" method="POST">
+                <input type="text" name="FullName" value="{{ .FullName }}" placeholder="Новый ФИО *" required>
+                <input type="submit" value="Изменить" onclick="return Question('Изменить ?')">
+            </form>
+        </div>
+    </div>
+</article>
+
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

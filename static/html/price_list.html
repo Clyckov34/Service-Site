@@ -1,0 +1,30 @@
+{{ define "price_list.html" }}
+{{ template "header.html" }}
+
+<head><title>{{ .Title }}</title></head>
+
+{{ if .Services }}
+<article class="Center">
+    <h2>Услуги</h2>
+    <div class="Form-Orders">
+        <form class="Form-PriceList" id="form-search">
+            <input type="search" placeholder="Поиск: Кухня" id="Service-search">
+        </form>
+    </div>
+    <div class="Ofers" id="Block-service-search">
+        {{ range .Services }}
+            <a href="/store/{{ .Url }}/detail?id={{ .Id }}" title="Перейти в раздел {{ .Title }}" class="Ofer">
+                <img src="/img/service/{{ .FileName }}" alt="{{ .Title }}">
+                <h3>{{ .Title }}</h3>
+                <div class="Price">{{ if .Sale.Value }}<del>от {{ .Price }}</del> <span class="Sale">{{ .Sale.Value }} руб</span>{{ else }}от {{ .Price }} руб{{ end }}</div>
+            </a>
+        {{ end }}
+    </div>
+    </div>
+</article>
+{{ end }}
+
+<script src="/js/xhttp_service.js"></script>
+
+{{ template "footer.html" }}    
+{{ end }}

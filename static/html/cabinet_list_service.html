@@ -1,0 +1,69 @@
+{{ define "cabinet_list_service.html" }}
+{{ template "cabinet_header.html" }}
+
+<head>
+    <title>Список услуг</title>
+</head>
+
+<article class="Center">
+    <h1>Список услуг</h1>
+
+    {{ if .TypeRepair }}
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Добавить</p></div>
+            <form class="Form-Order-input" enctype="multipart/form-data" action="/admin/cabinet/list-service/add" method="POST">
+                <input type="text" name="Title" placeholder="Название *" required>
+                <input type="number" name="Price" placeholder="Стоимость *" min="1" required>
+                <input type="number" name="Sale" placeholder="Стоимость со скидкой" min="1">
+                <select name="IdName" id="" required>
+                    <option value="">Выберите вариант</option>
+                    {{ range .TypeRepair }}
+                        <option value="{{ .Id }}">{{ .Title }} ({{ .Type }})</option>
+                    {{ end }}
+                </select>
+                <textarea name="Text" placeholder="Краткое описание до 1000 символов" maxlength="1000" required></textarea>
+                <input type="file" name="File" accept="image/jpeg, image/png" required>
+                <label class="Document">Размер изображения конвертируется в <strong>700x500px</strong></label>
+                <input type="submit" value="Добавить">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Список</p></div>
+            <form class="Form-Order-input" id="form-search">
+                <input type="search" placeholder="Поиск: Грунтовка стен" id="Service-search">
+            </form>
+            <div class="Services" id="Block-service-search">
+                {{ range .Services }}
+                    <table>
+                        <tr>
+                            <td colspan="2" class="Table-Title">{{ .Title }}</td>
+                        </tr>
+                        <tr>
+                            <td class="Table-Name-Category">Категория</td>
+                            <td>{{ .TitleTypeRepair }}</td>
+                        </tr>
+                        <tr>
+                            <td class="Table-Name-Price">Цена</td>
+                            <td>{{ if .Sale.Value }}<del>{{ .Price }}</del> <span class="Sale">{{ .Sale.Value }}</span>{{ else }}{{ .Price }}{{ end }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="Document"><a href="/admin/cabinet/list-service/detail/{{ .Id }}">Подробно</a></td>
+                        </tr>
+                    </table>
+                {{ end }}  
+            </div>
+        </div>
+    </div>
+    {{ else }}
+        <div>
+            <p>Для начало добавьте <a href="/admin/cabinet/type-service">Категории услуг</a></p>
+        </div>
+    {{ end }}
+
+</article>
+
+<script src="/js/xhttp_cabinet_service.js"></script>
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

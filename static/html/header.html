@@ -1,0 +1,43 @@
+{{ define "header.html" }}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/jpg" href="/img/favicon.jpg">
+
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/mobile/default.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="Menu-header Center">
+                <div class="Menu">
+                    <a href="/"><i class="fas fa-home"></i>Главная</a>
+                    <a href="/price-list"><i class="fas fa-concierge-bell"></i>Услуги</a>
+                    <a href="/#Portfolios"><i class="fab fa-usps"></i>Портфолио</a>
+                    <a href="/review"><i class="fas fa-book-open"></i>Отзывы</a> 
+                </div>
+                <div class="Info">
+                    <a href="tel:+79053355180">+7 (905) 335-51-80</a>
+                    <a href="mailto:my.mail@yandex.ru">my.mail@yandex.ru</a>
+                    <p>г. Суровикино, ул. Пролетарская, д. 115</p>
+                </div>
+            </div>  
+        </nav>
+        <div class="Logo Center">
+            <a href="/">
+                <div class="Logo-img"><img src="/img/logo.png" alt="Логотип сайта"></div>
+                <div class="Logo-name">
+                    <h1 id="Name">HOME - Услуги для дома</h1>
+                    <p id="Title">Под ключ | в Суровикино</p>
+                </div>
+            </a>
+        </div>
+    </header>
+    <main>
+
+{{ end }}

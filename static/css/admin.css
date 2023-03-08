@@ -1,0 +1,429 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+a {
+    text-decoration: none;
+}
+
+.Center {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* Menu header */
+
+.Menu-header {
+    background: #2e2e2e;
+}
+
+.Menu-header div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Menu-header div a {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.Menu-header div a:hover {
+    color: #2e2e2e;
+    background: #f6b438;
+}
+
+.Menu-header a {
+    color: #FFF;
+}
+
+
+/* Menu page */
+.Menu {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.Block-Menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    margin: 5px;
+    background: #e2e2e2;
+    font-weight: bold;
+    color: #2e2e2e;
+}
+
+.Block-Menu:hover {
+    background: #f6b438;
+    color: #2e2e2e;
+}
+
+.Block-Menu div {
+    display: flex;
+    align-items: center;
+}
+
+.Block-Menu div p i {
+    margin-right: 10px;
+}
+
+h1, h2 {
+    margin: 30px 0px;
+    text-align: center;
+}
+
+/* Панель управления кнопок */
+#Panel {
+    display: flex;
+    margin-top: 10px;
+}
+
+#Button {
+    background: #f7b537;
+    border: 1px solid #2e2e2e;
+    color: #2e2e2e;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Формы */
+
+.Form-Orders {
+    display: flex;
+}
+
+.Form-Order-input input, .Form-Order-input select, textarea {
+    margin: 10px;
+}
+
+.Form-Order-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Form-Order {
+    width: 100%;
+    margin: 10px;
+    background: #e2e2e2;
+    overflow: hidden;
+}
+
+.Form-Order input, .Form-Order-input select, .Form-Order input[type="submit"], .Document, textarea, .Comment, .Form-Order-Img {
+    padding: 10px;
+}
+
+.Form-Order-Img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Form-Order-Img img {
+    width: 100%;
+}
+
+.Form-Order-input input {
+    width: auto;
+}
+
+.Form-Order input[type="submit"] {
+    background: #f7b537;
+    border: 1px solid #2e2e2e;
+    color: #2e2e2e;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+textarea {
+    height: 100px;
+}
+
+.Document {
+    text-align: center;
+}
+
+.Form-Order input[value="Удалить"] {
+    background: rgb(245, 71, 71);
+    color: #FFF;
+}
+
+/* Портфолио */
+
+.Form-Order input[type="file"] {
+    border: 1px dashed #2e2e2e;
+}
+
+.Form-Order input[type="file"]:hover {
+    cursor: pointer;
+}
+
+
+/* Форма */
+
+.Title-Block {
+    background: #2e2e2e;
+    padding: 10px;
+    margin-bottom: 20px;
+
+}
+
+.Title-Block p {
+    text-align: center;
+    color: #FFF;
+}
+
+/* Группы соц сетей */
+
+.Group {
+    padding: 10px;
+}
+
+.Group ol li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #FFF;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: #f7b537;
+}
+
+.Group ol li i {
+    font-size: 20px;
+}
+
+.Group ol li a, .Group ol li p {
+    color: #2e2e2e;
+}
+
+/* Портфолио */
+
+.Portfolios {
+    margin: 10px;
+}
+
+.Portfolio {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.Portfolio img {
+    width: 100%;
+}
+
+.Portfolio p {
+    padding: 10px;
+    text-align: center;
+    background: #f7b537;
+    color: #2e2e2e;
+}
+
+/* Виды портфолио */
+
+.Foto {
+    padding: 10px;
+}
+
+.Foto img {
+    width: 100%;
+}
+
+
+
+/* Услуги */
+
+.Services {
+    margin: 5px;
+}
+
+.Services table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.Services table tr, .Services table td {
+    border: 1px solid #2e2e2e;
+    padding: 5px;
+    width: 50%;
+}
+
+.Form-Order table {
+    width: 100%;
+}
+
+.Form-Order table tr, .Form-Order table td {
+    border: 1px solid #2e2e2e;
+    padding: 5px;
+    width: 50%;
+}
+
+.Table-Title, .Table-Title-2 td {
+    text-align: center;
+    background: #f7b537;
+    font-weight: bold;
+}
+
+.Table-Body-2-Price {
+    text-align: center;
+}
+
+.Table-Name-Category, .Table-Name-Price {
+    background: #e2e2e2;
+}
+
+.Table-Name-Category p {
+    text-align: center;
+}
+
+.Table-Body-2 {
+    background: #fff;
+}
+
+.Table-Body-2 td td {
+    text-align: center;
+}
+
+/* Task */
+
+.Task {
+    padding: 10px;
+    margin-bottom: 15px;
+    background: #f7b537;
+}
+
+.Task-Date, .Task-Number {
+    color: #2e2e2e;
+}
+
+.Task-Number {
+    padding: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px dashed #2e2e2e;
+}
+
+.Task-Date {
+    font-size: 12px;
+    text-align: center;
+}
+
+
+#Check-Task {
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 90px;
+    background: red;
+}
+
+.Edit {
+    margin: 20px;
+    text-align: center;
+
+}
+
+.Edit a {
+    padding: 8px;
+    background: #f6b438;
+    color: #2e2e2e;
+    border: 1px solid #2e2e2e;
+}
+
+/* Комментарии */
+
+.Comment {
+    margin: 10px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.Message-Text p {
+    color: #2e2e2e;
+    text-align: justify;
+}
+
+.Message-Date p {
+    color: red;
+}
+
+.Message-Panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+.Message-Panel p {
+    color: red;
+}
+
+.Message-Panel a {
+    margin-left: 10px;
+}
+
+.Panel-Bottom {
+    margin-bottom: 20px;
+}
+
+.Message-Photo img {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.Message-Auth p {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.Back {
+    margin: 10px;
+}
+
+.Back a {
+    color: blue;
+}
+
+.Back a:hover {
+    color: red;
+}
+
+canvas {
+    padding: 10px;
+}
+
+#block-data {
+    margin-top: 20px;
+}
+
+.Sale {
+    color: red;
+}
+/* Кнопка вверх */
+
+#myBtn {
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    display: none;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    background: #2e2e2e;
+    color: #FFF;
+    font-size: 30px;
+    border-radius: 90px;
+    border: 3px solid #f7b537;
+    outline: none;
+    cursor: pointer;
+}
+

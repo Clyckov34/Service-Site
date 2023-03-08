@@ -1,0 +1,22 @@
+{{ define "store.html" }}
+{{ template "header.html" }}
+
+
+<head><title>{{ .Title }}</title></head>
+
+<article class="Center">
+    <h2>{{ .Type_Repair }}</h2>
+    <div class="Ofers">
+        {{ range .Service }}
+        <a href="/store/{{ .Url }}/detail?id={{ .Id }}" title="Перейти в раздел {{ .Title }}" class="Ofer">
+            <img src="/img/service/{{ .FileName }}" alt="{{ .Title }}">
+            <h3>{{ .Title }}</h3>
+            <div class="Price">{{ if .Sale.Value }}от <del>{{ .Price }}</del> <span class="Sale">{{ .Sale.Value }} руб</span>{{ else }}от {{ .Price }} руб{{ end }}</div>
+        </a>
+        {{ end }}
+    </div>
+</article>
+
+
+{{ template "footer.html" }}    
+{{ end }}

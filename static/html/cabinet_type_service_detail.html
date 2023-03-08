@@ -1,0 +1,47 @@
+{{ define "cabinet_type_service_detail.html" }}
+{{ template "cabinet_header.html" }}
+
+<head>
+    <title>{{ .Title }}</title>
+</head>
+
+<article class="Center">
+    <h1>Подробно: {{ .Title }}</h1>
+
+    <div class="Back"><a href="/admin/cabinet/type-service">Назад</a></div>
+
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Фото</p></div>
+            <div class="Foto">
+                <img src="/img/type_repair/{{ .FileName }}" alt="{{ .Title }}">
+            </div>
+            <form class="Form-Order-input" action="/admin/cabinet/type-service/editPhoto" method="POST" enctype="multipart/form-data">
+                <input type="file" name="File" accept="image/jpeg, image/png">
+                <label class="Document">Размер изображения конвертируется в <strong>700x500px</strong></label>
+                <input type="hidden" name="Id" value="{{ .Id }}">
+                <input type="hidden" name="FileName" value="{{ .FileName }}">
+                <input type="submit" value="Изменить фото" onclick="return Question('Изменить ?')">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Редактировать</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/type-service/edit" method="POST">
+                <input type="text" name="Title" value="{{ .Title }}" placeholder="Название *" required>
+                <input type="text" name="URL" value="{{ .Url }}" placeholder="Название URL *" required>
+                <input type="text" name="Key" value="{{ .KeyType }}" placeholder="key-type-task *" maxlength="5" required>
+                <input type="hidden" name="Id" value="{{ .Id }}">
+                <input type="submit" value="Изменить" onclick="return Question('Изменить ?')">
+            </form>
+            <form class="Form-Order-input" action="/admin/cabinet/type-service/delete" method="POST">
+                <input type="hidden" name="Id" value="{{ .Id }}">
+                <input type="hidden" name="FileName" value="{{ .FileName }}">
+                <input type="submit" value="Удалить" onclick="return Question('Удалить ?')">
+            </form>
+        </div>
+    </div>
+
+</article>
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

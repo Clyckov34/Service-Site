@@ -1,0 +1,59 @@
+@media all and (max-width: 1200px){
+
+    .Center {
+        width: 100%;
+    }
+
+    /* Menu header */
+
+    .Menu-header div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Menu-header div a {
+        padding: 20px 0px;
+    }
+
+    /* Menu page */
+
+    .Menu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Block-Menu{
+        width: auto;
+    }
+
+    #Panel {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Форма */
+
+    .Form-Orders, .Form-Order-input{
+        flex-direction: column;
+    }
+
+    .Form-Order {
+        margin: 10px 0px;
+    }
+
+    .Form-Order-input {
+        width: auto;
+    }
+
+    .Form-Order input[type="submit"], .Form-Order input[type="reset"], .Form-Order-input select, .Form-Order-input input[type="date"] {
+        height: 40px;
+    }
+
+    /* Кнопка вверх */
+    #myBtn {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+}

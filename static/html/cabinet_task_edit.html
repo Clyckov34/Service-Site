@@ -1,0 +1,36 @@
+{{ define "cabinet_task_edit.html" }}
+{{ template "cabinet_header.html" }}
+
+
+<head>
+    <title>TASK-{{ .Id }}</title>
+</head>
+
+<article class="Center">
+    <h1>Редактировать задачу</h1>
+
+    <div class="Back"><a href="/admin/cabinet/task/{{ .Id }}">Назад</a></div>
+
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>{{ .KeyType }}-{{ .Id }}</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/task/edit" method="POST">
+                <input type="text" name="FirstName" value="{{ .FirstName }}" placeholder="ФИО *" required>
+                <input type="tel" name="Phone" value="{{ .Phone }}" placeholder="Телефон *" maxlength="12"  required>
+                <input type="email" name="Email" value="{{ .Email.Value }}" placeholder="Почта" maxlength="100">
+                <input type="text" name="Address" value="{{ .Address.Value }}" placeholder="Адрес" maxlength="256">
+                <input type="number" name="Price" value="{{ .Price.Value }}" placeholder="Стоимость работ" min="0" max="9999999999">
+                <input type="hidden" name="Id" value="{{ .Id }}" required>
+                <input type="submit" value="Изменить" onclick="return Question('Изменить ?')">
+            </form>
+            <form class="Form-Order-input" action="/admin/cabinet/task/delete" method="POST">
+                <input type="hidden" name="Id" value="{{ .Id }}" required>
+                <input type="submit" value="Удалить" onclick="return Question('Удалить ?')">
+            </form>
+        </div>
+    </div>
+</article>            
+
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

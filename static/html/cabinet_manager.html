@@ -1,0 +1,55 @@
+{{ define "cabinet_manager.html" }}
+{{ template "cabinet_header.html" }}
+
+<head>
+    <title>Менеджеры</title>
+</head>
+
+
+<article class="Center">
+    <h1>Менеджеры</h1>
+
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Добавить</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/manager/add" method="POST">
+                <input type="text" name="FirstName" placeholder="Ф.И.О. *" required>
+                <input type="email" name="Email" placeholder="Email *" required>
+                <input type="text" name="Login" placeholder="Login *" required>
+                <input type="password" name="Password" placeholder="Password *" required>
+                <select name="Type" required>
+                    <option value="">Выбирите тип учетной запси</option>
+                    <option value="true">Admin</option>
+                    <option value="false">Manager</option>
+                </select>
+                <input type="submit" value="Зарегистрировать">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Список</p></div>
+            <div class="Services">
+            {{ range .Manager }}
+                <table>
+                    <tr>
+                        <td colspan="2" class="Table-Title">{{ .FirstName }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Category">Тип учетной записи</td>
+                        <td>{{ if eq .Type.Value true }} Admin {{ else }} Manager {{ end }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Price">Логин</td>
+                        <td>{{ .Login }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="Document"><a href="/admin/cabinet/manager/detail/{{ .Id }}">Подробно</a></td>
+                    </tr>
+                </table>
+            {{ end }}
+            </div>
+        </div>
+    </div>
+</article>
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

@@ -1,0 +1,56 @@
+{{ define "cabinet_task_filter.html" }}
+{{ template "cabinet_header.html" }}
+
+
+<head>
+    <title>Фильтр задач</title>
+</head>
+
+
+<article class="Center">
+    <h1>Фильтр задач</h1>
+
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Фильтр</p></div>
+            <form class="Form-Order-input">
+                <select name="Status" id="status">
+                    <option value="">Статусы</option>
+                    {{ range .StatusList }}
+                        <option value="{{ .Id }}">{{ .Name }} ({{ .Translate }})</option>
+                    {{ end }}    
+                </select>
+                <select name="Category" id="category">
+                    <option value="">Категории</option>
+                    {{ range .CategoryList }}
+                        <option value="{{ .Id }}">{{ .Name }}</option>
+                    {{ end }}    
+                </select>
+                <select name="Manager" id="manager">
+                    <option value="">Исполнители</option>
+                    {{ range .ManagerList }}
+                    <option value="{{ .Id }}">{{ .FirstName }}</option>
+                    {{ end }}
+                </select>
+                <input type="text" name="Family" id="family" placeholder="ФИО заказчика">
+                <input type="number" name="Phone" id="phone" placeholder="Номер заказчика">
+                <input type="text" name="Task" id="task" placeholder="Номер задачи: TASK-1">
+                <input type="text" name="Address" id="address" placeholder="Адрес">
+                <input type="date" name="DateStart" id="dateStart" value="{{ .DateStart }}" title="Дата ОТ">
+                <input type="date" name="DateEnd" id="dateEnd" value="{{ .DateEnd }}" title="Дата ДО">
+                <input type="submit" id="filterButton" value="Поиск">
+                <input type="reset" id="filterButtonReset" value="Сброс">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Список</p></div>
+            <div class="Services" id="block-data"></div>
+        </div>
+    </div>
+
+</article>
+
+<script src="/js/xhttp_filter.js"></script>  
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

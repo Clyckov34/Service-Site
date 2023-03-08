@@ -1,0 +1,102 @@
+{{ define "cabinet_static.html" }}
+{{ template "cabinet_header.html" }}
+
+
+<head>
+    <title>Статистика</title>
+</head>
+
+
+<article class="Center">
+    <h1>Статистика</h1>
+    <div class="Form-Orders">
+        <div class="Form-Order">
+          <canvas id="ChartAll"></canvas>
+        </div>
+        <div class="Form-Order">
+          <div class="Services">
+            <table>
+                <tr>
+                  <td colspan="2" class="Table-Title">Общая статистика</td>
+                </tr>
+                <tr>
+                  <td class="Table-Name-Category">To Do (К выполнению)</td>
+                  <td id="AllToDo">{{ .AllToDo }}</td>
+                </tr>
+                <tr>
+                  <td class="Table-Name-Category">In Progress (В процессе)</td>
+                  <td id="AllInProgress">{{ .AllInProgress }}</td>
+                </tr>
+                <tr>
+                  <td class="Table-Name-Category">Pause (Пауза)</td>
+                  <td id="AllPause">{{ .AllPause }}</td>
+                </tr>
+                <tr>
+                  <td class="Table-Name-Category">Denied (Отклонено)</td>
+                  <td id="AllDenied">{{ .AllDenied }}</td>
+                </tr>
+                <tr>
+                  <td class="Table-Name-Category">Done (Готово)</td>
+                  <td id="AllDone">{{ .AllDone }}</td>
+                </tr>
+            </table>    
+          </div>
+        </div>
+    </div>
+</article>        
+
+<script src="/js/chart.js"></script>
+<script>
+    let todoAll = document.getElementById('AllToDo').innerText;
+    let inProgressAll = document.getElementById('AllInProgress').innerText;
+    let pauseAll = document.getElementById('AllPause').innerText;
+    let deniedAll = document.getElementById('AllDenied').innerText;
+    let doneAll = document.getElementById('AllDone').innerText;
+    
+    const chartAll = document.getElementById('ChartAll');
+
+    new Chart(chartAll, {
+      type: 'bar',
+      data: {
+        labels: ['Заявки (Задачи)'],
+        datasets: [
+            {
+                label: 'To Do (К выполнению)',
+                data: [todoAll],
+                borderWidth: 1
+            },
+            {
+                label: 'In Progress (В процессе)',
+                data: [inProgressAll],
+                borderWidth: 1
+            },
+            {
+                label: 'Pause (Пауза)',
+                data: [pauseAll],
+                borderWidth: 1
+            },
+            {
+                label: 'Denied (Отклонено)',
+                data: [deniedAll],
+                borderWidth: 1
+            },
+            {
+                label: 'Done (Готово)',
+                data: [doneAll],
+                borderWidth: 1
+            },
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+</script>
+
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

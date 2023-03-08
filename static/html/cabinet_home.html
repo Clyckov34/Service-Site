@@ -1,0 +1,66 @@
+{{ define "cabinet_home.html" }}
+{{ template "cabinet_header.html" }}
+
+<head>
+    <title>Личный кабинет</title>
+</head>
+
+
+<article>
+    <div class="Center">
+        <nav class="Menu">
+            <a href="/admin/cabinet/task" class="Block-Menu">
+                <div>
+                    {{ if .Task }}<span id="Check-Task"></span>{{ end }} 
+                    <p><i class="fas fa-tasks"></i>Заявки (Задачи)</p>
+                </div>
+            </a>
+            <a href="/admin/cabinet/filter" class="Block-Menu">
+                <div>
+                    <p><i class="fas fa-filter"></i>Фильтр</p>
+                </div>
+            </a>
+            <a href="/admin/cabinet/static" class="Block-Menu">
+                <div>
+                    <p><i class="fas fa-chart-line"></i>Статистика</p>
+                </div>
+            </a>
+            {{ if .Admin }}
+            <a href="/admin/cabinet/manager" class="Block-Menu">
+                <div>
+                    <p><i class="fas fa-users-cog"></i>Менеджеры</p>
+                </div>
+            </a>
+            {{ end }}
+        </nav>
+        {{ if .Admin }}
+        <nav class="Menu">
+            <a href="/admin/cabinet/type-service" class="Block-Menu">
+                <div>
+                    <p><i class="fas fa-list-ul"></i>Категории услуг</p>
+                </div>
+            </a>
+            <a href="/admin/cabinet/list-service" class="Block-Menu">
+                <div>
+                    <p><i class="fas fa-list-ol"></i>Список услуг</p>
+                </div>
+            </a>
+            <a href="/admin/cabinet/portfolio" class="Block-Menu">
+                <div>
+                    <p><i class="far fa-images"></i>Портфолио</p>
+                </div>
+            </a>
+            <a href="/admin/cabinet/social-network" class="Block-Menu">
+                <div>
+                    <p><i class="fas fa-project-diagram"></i>Cоц.Сети</p>
+                </div>
+            </a>
+        </nav>
+        {{ end }}
+    </div>
+</article>
+
+
+{{ template "cabinet_footer.html" }}
+{{ end }}
+

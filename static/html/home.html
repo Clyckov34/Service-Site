@@ -1,0 +1,119 @@
+{{ define "home.html" }}
+{{ template "header.html" }}
+
+<head>
+    <title>{{ .Title }}</title>
+</head>
+
+{{ if .Service }}
+<article class="Center">
+    <h2>Категории услуг</h2>
+    <div class="Ofers">
+        {{ range .Service }}
+        <a href="/store/{{ .Url }}" title="Перейти в раздел {{ .Title }}" class="Ofer"> 
+            <img src="/img/type_repair/{{ .FileName }}" alt="{{ .Title }}">
+            <h3>{{ .Title }}</h3>
+        </a>
+        {{ end }}
+    </div>
+</article>
+{{ end }}
+
+<article class="Center">
+    <h2>Почему Мы ?</h2>
+    <div class="Presents">
+        <div class="Present">
+            <i class="far fa-money-bill-alt"></i>
+            <p>Выгодная<br>цена</p>
+        </div>
+        <div class="Present">
+            <i class="fas fa-car"></i>
+            <p>Выезд специалиста<br>Бесплатно</p>
+        </div>
+        <div class="Present">
+            <i class="fas fa-users"></i>
+            <p>Опытная<br>команда</p>
+        </div>
+        <div class="Present">
+            <i class="fas fa-user-tie"></i>
+            <p>Индивидуальный подход<br>к каждому клиенту</p>
+        </div>
+    </div>
+</article>
+
+{{ if .Portfolio }}
+<article class="Center" id="Portfolios">
+    <h2>Портфолио</h2>
+    <div class="Portfolios">
+        {{ range .Portfolio }}
+            <div class="Portfolio"><img src="/img/portfolio/{{ . }}"></div>
+        {{ end }}
+    </div>
+</article>
+{{ end }}
+
+
+{{ if .SocialNetwork }}
+<article class="Center">
+    <h2>Мы в социальных сетях</h2>
+    <div class="Socials">
+        {{ range .SocialNetwork }}
+            <a href="{{ .Url }}" id="{{ .Color }}" class="Social" target="_blank">
+                <i class="{{ .FontAwesome }}"></i>
+            </a>
+        {{ end }}
+    </div>
+</article>
+{{ end }}
+
+<article class="Center">
+    <h2>Задать вопрос</h2>
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div id="Maps">
+                <a href="{{ .MapsUrl }}" target="_blank"><img src="/img/map.png"></a>
+            </div>
+            <table id="Maps-Table">
+                <tr>
+                    <td colspan="2" class="Table-Title">ИП Михайлов Иван Николаевич</td>
+                </tr>
+                <tr class="Table-Body-2">
+                    <td>ИНН</td>
+                    <td>343003091319</td>
+                </tr>
+                <tr class="Table-Body-2">
+                    <td>ОГРНИП</td>
+                    <td>321344300093711</td>
+                </tr>
+            </table>
+        </div>
+        <div class="Form-Order">
+            <form class="Form-Order-input" action="mail" method="POST">
+                <input type="text" name="FirstName" placeholder="ФИО: Петренко Aлександр Николаевич *" required>
+                <input type="tel" name="Phone" placeholder="Телефон: +79995556633 *" required>
+                <input type="email" name="Email" placeholder="Почта: Exemple@yandex.ru">
+                <textarea name="Text" placeholder="Задать свой вопрос *" required></textarea>
+                <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                <input type="submit" value="Заказать обратную связь">
+            </form>
+
+            {{ if .GoogleKey }}
+            <div class="Google">
+                <p><span>Защита от спама reCAPTCHA</span> <a href="https://policies.google.com/privacy?hl=ru" target="_blank">Конфиденциальность</a> и <a href="https://policies.google.com/terms?hl=ru" target="_blank">Условия использования</a></p>
+            </div>
+            <script src="https://www.google.com/recaptcha/api.js?render={{ .GoogleKey }}"></script>
+            <script>
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('{{ .GoogleKey }}', {action: 'submit'}).then(function(token) {
+                        // Add your logic to submit to your backend server here.
+                        document.getElementById("g-recaptcha-response").value = token;
+                    });
+                });
+            </script>
+            {{ end }}
+        </div>
+    </div>
+</article>    
+
+{{ template "footer.html" }}    
+{{ end }}

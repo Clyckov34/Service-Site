@@ -1,0 +1,40 @@
+{{ define "cabinet_social_network.html" }}
+{{ template "cabinet_header.html" }}
+
+<head>
+    <title>Группы соц.сетей</title>
+</head>
+
+<article class="Center">
+    <h1>Группы социальных сетей</h1>
+
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Добавить</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/social-network/add" method="POST">
+                <select name="Icon" required>
+                    <option value="">Выберите соц.сеть</option>
+                    {{ range .Icon }}
+                        <option value="{{ .Id }}">{{ .Name }}</option>
+                    {{ end }}
+                </select>
+                <input type="url" name="Url" placeholder="URL группы социальной сети *" required>
+                <input type="submit" value="Добавить">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Список</p></div>
+           <div class="Group">
+                <ol>
+                    {{ range .Group }}
+                        <li title="{{ .Url }}"><a href="{{ .Url }}"><i class="{{ .Icon }}"></i> {{ .Title }}</a><a href="/admin/cabinet/social-network/detail/{{ .Id }}">Подробно</a></li>
+                    {{ end }}    
+                </ol>
+           </div>
+        </div>
+    </div>
+
+</article>
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

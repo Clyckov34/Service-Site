@@ -1,0 +1,72 @@
+{{ define "cabinet_manager_detail.html" }}
+{{ template "cabinet_header.html" }}
+
+<head>
+    <title>Менеджеры</title>
+</head>
+
+<article class="Center">
+    <h1>Настройки личного кабинета</h1>
+
+    <div class="Back"><a href="/admin/cabinet/manager">Назад</a></div>
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Изменить Password</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/manager/password" method="POST">
+                <input type="password" name="NewPassword" placeholder="Новый пароль *" required>
+                <input type="password" name="Repeat" placeholder="Повторите новый пароль *" required>
+                <input type="hidden" name="Id" value="{{ .Id }}" required>
+                <input type="submit"  value="Изменить" onclick="return Question('Изменить ?')">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Изменить Login</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/manager/login" method="POST">
+                <input type="text" name="Login" value="{{ .Login }}" placeholder="Новый Логин *" required>
+                <input type="hidden" name="Id" value="{{ .Id }}" required>
+                <input type="submit" value="Изменить" onclick="return Question('Изменить ?')">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Изменить Email</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/manager/email" method="POST">
+                <input type="email" name="Email" value="{{ .Email }}" placeholder="Новая электронная почта *" required>
+                <input type="hidden" name="Id" value="{{ .Id }}" required>
+                <input type="submit" value="Изменить" onclick="return Question('Изменить ?')">
+            </form>
+        </div>
+    </div>
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Изменить Ф.И.О.</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/manager/full-name" method="POST">
+                <input type="text" name="FullName" value="{{ .FullName }}" placeholder="Новый ФИО *" required>
+                <input type="hidden" name="Id" value="{{ .Id }}" required>
+                <input type="submit" value="Изменить" onclick="return Question('Изменить ?')">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Изменить тип учетной записи</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/manager/type" method="POST">
+                <select name="Type" required>
+                    <option value="">Выбирите тип учетной запси</option>
+                    <option value="true">Admin</option>
+                    <option value="false">Manager</option>
+                </select>
+                <input type="hidden" name="Id" value="{{ .Id }}" required>
+                <input type="submit" value="Изменить" onclick="return Question('Изменить ?')">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Удалить учетную запись</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/manager/delete" method="POST">
+                <input type="hidden" name="Id" value="{{ .Id }}" required>
+                <input type="submit" value="Удалить" onclick="return Question('Удалить ?')">
+            </form>
+        </div>
+    </div>
+</article>
+
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

@@ -1,0 +1,26 @@
+{{ define "review.html" }}
+{{ template "header.html" }}
+
+<head>
+    <title>{{ .Title }}</title>
+    <!-- Put this script tag to the <head> of your page -->
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
+    <script type="text/javascript">
+      VK.init({apiId: 51541431, onlyWidgets: true});
+    </script>
+</head>
+
+<article class="Center">
+    <h2>Отзывы</h2>
+    <div class="Form-Orders">
+        <!-- Код для отзывов -->
+        <!-- Put this div tag to the place, where the Comments block will be -->
+        <div id="vk_comments"></div>
+        <script type="text/javascript">
+        VK.Widgets.Comments("vk_comments", {limit: 5, attach: "photo,video"});
+        </script>
+    </div>
+</article>
+
+{{ template "footer.html" }} 
+{{ end }}

@@ -1,0 +1,46 @@
+{{ define "store_detail.html" }}
+{{ template "header.html" }}
+
+<head><title>{{ .Category }}: {{ .Service }}</title></head>
+
+<article class="Center">
+    <h2>{{ .Service }}</h2>
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Store-img"><img src="/img/service/{{ .Img }}" alt="{{ .Service }}"></div>
+            <div class="Price">{{ if .Sale.Value }}от <del>{{ .Price }}</del> <span class="Sale">{{ .Sale.Value }} руб</span>{{ else }}от {{ .Price }} руб{{ end }}</div>
+            <div class="Store-Text"><p>Описание: {{ .Text }}</p></div>
+        </div>
+        <div class="Form-Order">
+            <form action="" class="Form-Order-input" method="POST" id="GetURL">
+                <input type="text" name="FirstName" placeholder="ФИО: Иванько Иван Петрович *" required>
+                <input type="tel" name="Phone" placeholder="Телефон: +79995556633 *" maxlength="12" required>
+                <input type="email" name="Email" placeholder="Почта: Exemple@yandex.ru">
+                <input type="text" name="Street" placeholder="Адрес: г. Волгоград Ленина 54, д. 5 кв. 20">            
+                <input type="hidden" name="IdCategory" value="{{ .Category_ID }}" required>
+                <input type="hidden" name="IdService" value="{{ .Service_ID }}" required>
+                <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                <input type="submit" value="Заказать">
+            </form>
+            {{ if .GoogleKey }}
+                <div class="Google">
+                    <p><span>Защита от спама reCAPTCHA</span> <a href="https://policies.google.com/privacy?hl=ru" target="_blank">Конфиденциальность</a> и <a href="https://policies.google.com/terms?hl=ru" target="_blank">Условия использования</a></p>
+                </div>
+                <script src="https://www.google.com/recaptcha/api.js?render={{ .GoogleKey }}"></script>
+                <script>
+                    grecaptcha.ready(function() {
+                        grecaptcha.execute('{{ .GoogleKey }}', {action: 'submit'}).then(function(token) {
+                            // Add your logic to submit to your backend server here.
+                            document.getElementById("g-recaptcha-response").value = token;
+                        });
+                    });
+                </script>
+            {{ end }}
+        </div>
+    </div>
+</article>
+<script src="/js/form_store.js"></script> 
+
+
+{{ template "footer.html" }}    
+{{ end }}

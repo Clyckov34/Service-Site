@@ -1,0 +1,83 @@
+{{ define "cabinet_task.html" }}
+{{ template "cabinet_header.html" }}
+
+<head>
+    <title>Заявки (Задачи)</title>
+</head>
+
+
+<article class="Center">
+    <h1>Заявки (Задачи)</h1>
+
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>To Do (К выполнению)</p></div>
+            <div>
+                {{ range .ToDo }}
+                    <a href="task/{{ .Id }}">
+                    <div class="Task">    
+                        <p class="Task-Number">{{ .KeyType }}-{{ .Id }}</p>
+                        <p class="Task-Date">Создан: {{ .DateStatus }}</p>
+                    </div>
+                    </a>    
+                {{ end }}
+            </div>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>In Progress (В процессе)</p></div>
+            <div>
+                {{ range .InProgress }}
+                    <a href="task/{{ .Id }}">
+                    <div class="Task">    
+                        <p class="Task-Number">{{ .KeyType }}-{{ .Id }}</p>
+                        <p class="Task-Date">В работе: {{ .DateStatus }}</p>
+                    </div>
+                    </a>   
+                {{ end }}
+            </div>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Pause (Пауза)</p></div>
+            <div>
+                {{ range .Pause }}
+                    <a href="task/{{ .Id }}">
+                    <div class="Task">    
+                        <p class="Task-Number">{{ .KeyType }}-{{ .Id }}</p>
+                        <p class="Task-Date">Пауза: {{ .DateStatus }}</p>
+                    </div>
+                    </a>         
+                {{ end }}
+            </div>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Denied (Отклонено)</p></div>
+            <div>
+                {{ range .Denied }}
+                    <a href="task/{{ .Id }}">
+                    <div class="Task">    
+                        <p class="Task-Number">{{ .KeyType }}-{{ .Id }}</p>
+                        <p class="Task-Date">Отклонен: {{ .DateStatus }}</p>
+                    </div>
+                    </a>    
+                {{ end }}
+            </div>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Done (Готово)</p></div>
+            <div>
+                {{ range .Done }}
+                    <a href="task/{{ .Id }}">
+                    <div class="Task">    
+                        <p class="Task-Number">{{ .KeyType }}-{{ .Id }}</p>
+                        <p class="Task-Date">Сделан: {{ .DateStatus }}</p>
+                    </div>
+                    </a>      
+                {{ end }}
+            </div>
+        </div>
+    </div>      
+</article>          
+
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

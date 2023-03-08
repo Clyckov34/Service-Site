@@ -1,0 +1,478 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+a {
+    text-decoration: none;
+}
+
+.Center {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* ______________________HEADER_____________________ */
+
+/* Фон header */
+header {
+    background: url("/img/fon.jpg") center center;
+    background-size: cover;
+    height: 600px;
+    overflow: hidden;
+}
+
+/* Меню */
+.Menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.Menu a, .Info a {
+    font-size: 18px;
+}
+
+.Menu a {
+    padding: 2px 20px;
+    color: #FFF;
+    border-right: 1px solid #FFF;
+}
+
+.Menu a:hover i {
+    color: #f6b438
+}
+
+.Menu a i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* Контакты */
+.Info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.Info a, .Info p {
+    color: #FFF;
+    font-weight: bold;
+    margin: 5px;
+}
+
+
+/* Логотип */
+.Logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}
+
+#Name, #Title {
+    color: #FFF;
+}
+
+#Name {
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.Logo a {
+    display: flex;
+    align-items: center;
+}
+
+.Logo-img img {
+    width: 100px;
+    margin-right: 20px;
+}
+
+
+/* ______________________CONTENT_____________________ */
+
+
+h2 {
+    margin: 20px;
+    text-align: center;
+    color: #2e2e2e;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.Presents, .Socials, .Form-Orders {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Ofer {
+    display: inline-block;
+    width: 377px;
+    margin: 10px;
+    overflow: hidden;
+    background: #e2e2e2;
+}
+
+.Ofer h3, .Price {
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #2e2e2e
+}
+
+.Ofer img {
+    width: 100%;
+    height: 250px;
+}
+
+.Ofer .Description ul {
+    margin: 0px 25px; 
+    padding: 10px;
+    list-style-type: square;
+}
+
+.Ofer .Description ul li {
+    padding: 5px;
+    color: #2e2e2e;
+}
+
+.Ofer:hover h3, .Ofer:hover .Price {
+    color: #2e2e2e;
+    background: #f6b438;
+}
+
+/* Почему Мы */
+
+.Present {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 180px;
+    margin: 10px;
+    background: #e2e2e2;
+}
+
+.Present i, .Present p {
+    color: #2e2e2e;
+}
+
+.Present i {
+    font-size: 70px;
+}
+
+.Present p {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Портфолию */
+
+.Portfolio {
+    display: inline-flex;
+    width: 575px;
+    height: 400px;
+    margin: 10px;
+}
+
+.Portfolio img {
+   width: 100%;
+}
+
+
+/* Соц сети */
+
+.Social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    margin: 10px;
+    background: #e2e2e2;
+}
+
+.Social i {
+    color: #2e2e2e;
+    font-size: 50px;
+}
+
+.Social:hover {
+    background: #f7b537;
+}
+
+/* Обратное обращение */
+
+.Info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Phone {
+    width: 100%;
+}
+
+
+
+/* Форма для заказов */
+
+.Form-Orders, .Form-Order-input input, .Form-Order textarea {
+    margin: 10px;
+}
+
+.Form-Order textarea {
+    height: 100px;
+}
+
+.Form-Orders {
+    justify-content: flex-end;
+}
+
+.Form-Order-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Form-Order {
+    width: 100%;
+    margin: 10px;
+    background: #e2e2e2;
+    overflow: hidden;
+}
+
+.Form-Order input, .Form-Order input[type="submit"], .Form-Order textarea, .Store-img, .Store-Text  {
+    padding: 10px;
+}
+
+.Form-Order-input input {
+    width: auto;
+}
+
+.Form-Order input[type="submit"] {
+    background: #f7b537;
+    border: 1px solid #2e2e2e;
+    color: #2e2e2e;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.Store-img img {
+    width: 100%;
+}
+
+/* Услуги */
+
+.Form-PriceList, .Form-PriceList input {
+    width: 100%;
+}
+
+.Form-PriceList input {
+    padding: 10px;
+    border: 1px solid #2e2e2e;
+}
+
+
+.Services {
+    margin: 10px;
+}
+
+.Services table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.Services table tr, .Services table td {
+    border: 1px solid #2e2e2e;
+    padding: 5px;
+    width: 50%;
+}
+
+.Form-Order table {
+    width: 100%;
+}
+
+.Form-Order table tr, .Form-Order table td {
+    border: 1px solid #2e2e2e;
+    padding: 5px;
+    width: 50%;
+}
+
+.Table-Title, .Table-Title-2 td {
+    text-align: center;
+    background: #f7b537;
+    font-weight: bold;
+}
+
+.Table-Body-2-Price {
+    text-align: center;
+}
+
+.Table-Name-Category, .Table-Name-Price {
+    background: #e2e2e2;
+}
+
+.Table-Body-2 {
+    background: #fff;
+}
+
+.Table-Body-2 td td {
+    text-align: center;
+}
+
+/* Подвал */
+
+footer {
+    background: #2e2e2e;
+}
+
+.Footer-copy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.Footer-copy p {
+    color: #FFF;
+}
+
+/* Error */
+
+.Error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    margin: 10px;
+
+    overflow: hidden;
+}
+
+.Error p {
+    font-size: 40px;
+    color: #2e2e2e;
+}
+
+.NotFound img {
+    width: 100%;
+}
+
+/* Капча */
+.Google {
+    padding: 10px;
+}
+
+.Google p {
+    font-size: 12px;
+    color: #2e2e2e;
+}
+
+.Google p a {
+    text-decoration: underline;
+}
+
+.Google p span {
+    font-size: 14px;
+}
+
+.grecaptcha-badge {
+	visibility: hidden;
+}
+
+/* Install */
+
+.Form-Order-Install {
+    background: #e2e2e2;
+    padding: 10px;
+}
+
+.Form-Order-Install form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.Form-Order-Install form legend {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.Form-Order-Install form input, .Document {
+    padding: 10px;
+}
+
+.Form-Order-Install input[type="submit"] {
+    background: #f7b537;
+    border: 1px solid #2e2e2e;
+    color: #2e2e2e;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+}
+
+
+/* Кнопка вверх */
+
+#myBtn {
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    display: none;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    background: #2e2e2e;
+    color: #FFF;
+    font-size: 30px;
+    border-radius: 90px;
+    border: 3px solid #f7b537;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Карта */
+#Maps, #Maps-Table{
+    padding: 10px;
+}
+
+#Maps img {
+    width: 100%;
+}
+
+/* Соц сети (Привязаны к бд... Изменять нельзя) */
+
+#Vkontakte:hover i, #Odnoklassniki:hover i, #Instagram:hover i , #Facebook:hover i, #Telegram:hover i {
+    color: #FFF;
+}
+
+#Vkontakte:hover {
+    background: #0077ff;
+}
+
+#Odnoklassniki:hover {
+    background: #ee8208;
+}
+
+#Instagram:hover {
+    background: #d02777;
+}
+
+#Facebook:hover {
+    background: #00569f;
+}
+
+#Telegram:hover {
+    background: #28a5e5;
+}
+
+.Sale {
+    color: red;
+}

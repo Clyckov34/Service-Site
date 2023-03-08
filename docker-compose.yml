@@ -1,0 +1,114 @@
+# Статья https://habr.com/ru/company/nixys/blog/662698/
+# Создание внутреней сети между контейнерами 
+networks:                         # Создание сети
+  default:                        # Название нашей сети. Можете использовать любое название
+    ipam:                         # Конфигурация сети. В данном случае мы указываем нашу локальную подсеть 172.0.0.0/24
+      driver: default             # Драйвер нашей сети
+      config:
+        - subnet: 172.0.0.0/24    # Локальная подсеть 172.0.0.0/24    
+
+
+services:                         # Создание сервисов
+
+  # https://hub.docker.com/_/nginx
+  nginx:
+    container_name: nginx         # Название контейнера
+    image: nginx:alpine                  # Загрузка образа 
+    restart: always               # Перезагрузка в случае падении
+    ports:                        # Прокидывание порта внешний:внутреннии 
+      - 80:80
+      - 443:443
+    networks:                     # Подключаем сеть
+      default:                    # Имя внутреней сети (Которую мы создавали)
+        ipv4_address: 172.0.0.10  # Присваеваем IP
+    links:
+      - app-repair                # Загрузить контейнер после, после контенера app-repair 
+    volumes:                      # Прокидывание  локального внешнего хранилище. внешнее:внутренние
+      - ./volumes/var/log/nginx:/var/log/nginx                    # log файлы
+      - ./volumes/etc/nginx/conf.d:/etc/nginx/conf.d              # Конфигурация площадок
+
+      - ./static/:/static/        # Статические файлы
+    env_file:
+      - .env
+    environment:
+      - NGINX_HOST=${DOMAIN}       
+
+
+  # https://hub.docker.com/_/mysql
+  db:
+    container_name: mysql-8.0
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      default:
+        ipv4_address: 172.0.0.20
+    volumes:
+      - ./volumes/var/lib/mysql:/var/lib/mysql
+      - ./volumes/log/mysql:/var/log/mysql
+    env_file:
+      - .env            
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"           # Cгенерировать случайный начальный пароль для пользователя root 
+      MYSQL_USER: ${DB_CREATE_USER}               # Создает Нового пользователя
+      MYSQL_PASSWORD: ${DB_CREATE_PASSWORD}       # Создает пароль для нового пользователя
+      MYSQL_DATABASE: Repair                      # Создает Базу Данных
+
+  
+  # https://hub.docker.com/_/phpmyadmin
+  phpmyadmin:
+    container_name: phpmyadmin-5.2
+    image: phpmyadmin:5.2
+    restart: always
+    links:
+      - db
+    ports:
+      - 8080:80
+    networks:
+      default:
+        ipv4_address: 172.0.0.30
+    environment:
+      - PMA_ARBITRARY=1
+
+
+  # Собираем свой контейнер из Dockerfile
+  app-repair: 
+    container_name: app-repair 
+    build: .                   # Загружаем файл Dockerfile
+    restart: always            
+    ports:                     
+      - 8888:8888
+    networks:                  
+      default:
+        ipv4_address: 172.0.0.40 
+    links:
+      - db  
+    volumes:
+      - ./static/:/static/                # Статические файлы
+      - /etc/timezone:/etc/timezone:ro    # Синхронизация Время зоны 
+      - /etc/localtime:/etc/localtime:ro  # Синхронизация Локального времяни
+    env_file:
+      - .env  
+    environment:
+    #БД
+      - DB_LOGIN=${DB_CREATE_USER}                # Логин
+      - DB_PASSWORD=${DB_CREATE_PASSWORD}         # Пароль
+      - DB_HOST=172.0.0.20                        # IP базы данных
+      - DB_PORT=:3306                             # Порт
+      - DB_NAME=Repair                            # Имя базы данных
+    
+    #Mail
+      - MAIL_HOST=${MAIL_HOST}
+      - MAIL_LOGIN=${MAIL_LOGIN}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - MAIL_PORT=${MAIL_PORT}
+    
+    #Google Капча
+      - GOOGLE_KEY_SITE=${GOOGLE_KEY_SITE}
+      - GOOGLE_KEY_SERVER=${GOOGLE_KEY_SERVER}
+      - GOOGLE_SCORE=${GOOGLE_SCORE}
+
+    #Site
+      - DOMAIN=${DOMAIN}

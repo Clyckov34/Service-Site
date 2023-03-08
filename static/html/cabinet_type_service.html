@@ -1,0 +1,38 @@
+{{ define "cabinet_type_service.html" }}
+{{ template "cabinet_header.html" }}
+
+<head>
+    <title>Категории услуг</title>
+</head>
+
+
+<article class="Center">
+    <h1>Категории услуг</h1>
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Добавить</p></div>
+            <form class="Form-Order-input" enctype="multipart/form-data"  action="/admin/cabinet/type-service/add" method="POST">
+                <input type="text" name="Title" placeholder="Название *" required>
+                <input type="text" name="URL" placeholder="Название URL *" required>
+                <input type="text" name="Key" placeholder="key-type-task *" maxlength="5" required>
+                <input type="file" name="File" accept="image/jpeg, image/png" required>
+                <label class="Document">Размер изображения конвертируется в <strong>700x500px</strong></label>
+                <input type="submit" value="Добавить">
+                <input type="reset" value="Очистить">
+            </form>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Список</p></div>
+            <div class="Group">
+                <ol>
+                    {{ range .Data }}
+                        <li><p>{{ .Title }}</p><a href="/admin/cabinet/type-service/detail/{{ .Id }}">Подробно</a></li>
+                    {{ end }}    
+                </ol>
+            </div>
+        </div>
+    </div>
+</article>
+
+{{ template "cabinet_footer.html" }}
+{{ end }}

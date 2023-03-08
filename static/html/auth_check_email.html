@@ -1,0 +1,30 @@
+{{ define "auth_check_email.html" }}
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="/img/favicon.jpg">
+    <title>Подтверждения личности</title>
+
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/mobile/default.css">
+</head>
+<body>
+    <article class="Center">
+        <h2>Подтверждения личности</h2>
+        <div class="Form-Order">
+            <form action="/admin/auth/check" class="Form-Order-input" method="POST">
+                <input type="text" name="Code" placeholder="Подтверждающий код отправлен {{ .Email }}" required>
+                <input type="submit" value="Войти">
+            </form>
+        </div>
+    </article>
+</body>
+</html>
+  
+{{ end }}
+
+

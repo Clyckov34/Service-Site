@@ -1,0 +1,165 @@
+{{ define "cabinet_task_detail.html" }}
+{{ template "cabinet_header.html" }}
+
+<head>
+    <title>TASK-{{ .IdTask }}</title>
+</head>
+
+<article class="Center">
+    <h2>Описание задачи</h2>
+
+    <div class="Back"><a href="/admin/cabinet/task">Назад</a></div>
+
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Form-Order-Img">
+                <img src="/img/service/{{ .FileName }}" alt="">
+            </div>
+        </div>
+        <div class="Form-Order">
+            <div class="Services">
+                <table>
+                    <tr>
+                        <td colspan="2" class="Table-Title">Задача {{ .KeyType }}-{{ .IdTask }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Category">Категория</td>
+                        <td>{{ .Category }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Category">Наименования</td>
+                        <td>{{ .Title }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Category">ФИО Исполнителя</td>
+                        <td>{{ if .FirstNameManager.Value }}<p id="manager">{{ .FirstNameManager.Value }}</p>{{ else }}<p style="color: red">Не назначен</p>{{ end }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Category">ФИО Заказчика</td>
+                        <td>{{ .FirstName }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Category">Телефон</td>
+                        <td>{{ .Phone }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Category">Почта</td>
+                        <td>{{ .Email.Value }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Category">Адрес</td>
+                        <td>{{ .Address.Value }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Price">Цена</td>
+                        <td>{{ if .Sale.Value }}<del>{{ .Price }}</del> <span class="Sale">{{ .Sale.Value }}</span>{{ else }}{{ .Price }}{{ end }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Price">Стоимость работ</td>
+                        <td>{{ .PriceWork.Value }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Category">Статус</td>
+                        <td>{{ .Status }} ({{ .StatusTranslate }})</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Category">Заявка создана</td>
+                        <td>{{ .DateStart }}</td>
+                    </tr>
+                    <tr>
+                        <td class="Table-Name-Category">Статус изменен</td>
+                        <td>{{ .DateStatus }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="Edit">
+        <a href="/admin/cabinet/task/edit-detail/{{ .IdTask }}">Изменить</a>
+    </div>
+</article>
+
+<article class="Center">
+    <div class="Form-Orders">
+        <div class="Form-Order">
+            <div class="Panel-Bottom">
+                <div class="Title-Block"><p>Cтатус задачи</p></div>
+                <form class="Form-Order-input" action="/admin/cabinet/task/edit-status" method="POST">
+                    <select name="Status" required>
+                    <option value="">Выберите статус</option>
+                    {{ range .StatusList }}
+                        <option value="{{ .Id }}">{{ .Name }} ({{ .Translate }})</option>
+                    {{ end }}    
+                    </select>
+                    <input type="hidden" name="IdTask" value="{{ .IdTask }}">
+                    <input type="submit" value="Изменить" id="status">
+                </form>
+            </div>
+            <div class="Panel-Bottom">
+                <div class="Title-Block"><p>Стоимость работ</p></div>
+                <form class="Form-Order-input" action="/admin/cabinet/task/edit-price" method="POST">
+                    <input type="number" name="Price" placeholder="Стоимость" min="0" max="9999999999">
+                    <input type="hidden" name="IdTask" value="{{ .IdTask }}">
+                    <input type="submit" value="Добавить (Изменить)">
+                </form>
+            </div>
+            <div class="Panel-Bottom">
+                <div class="Title-Block"><p>Исполнитель</p></div>
+                <form class="Form-Order-input" action="/admin/cabinet/task/edit-manager" method="POST">
+                    <select name="Manager" required>
+                        <option value="">Выберите исполнителя</option>
+                        {{ range .ManagerList }}
+                        <option value="{{ .Id }}">{{ .FirstName }}</option>
+                        {{ end }}
+                    </select>
+                    <input type="hidden" name="IdTask" value="{{ .IdTask }}">
+                    <input type="submit" value="Добавить (Изменить)">
+                </form>
+            </div>
+        </div>
+        <div class="Form-Order">
+            <div class="Title-Block"><p>Внутренние примечание</p></div>
+            <form class="Form-Order-input" action="/admin/cabinet/comment/add" enctype="multipart/form-data" method="POST">
+                <textarea name="Comment" placeholder="Оставить комментарий" required></textarea>
+                <input type="file" name="File" accept="image/jpeg, image/png">
+                <input type="hidden" name="IdTask" value="{{ .IdTask }}">
+                <input type="submit" value="Добавить">
+            </form>
+            {{ range .CommentList }}
+            <div class="Comment">
+                {{ if .FirstName.Value }}
+                <div class="Message-Auth"><p>{{ .FirstName.Value }}</p></div>
+                {{ end }}
+                <div class="Message-Text"><p>{{ .Text }}</p></div>
+                {{ if .FileName.Value }}
+                <div class="Message-Photo"><img src="/img/comment/{{ .FileName.Value }}"></div>
+                {{ end }}
+                <div class="Message-Panel">
+                    <p>Опубликован: {{ .Date.Value }}</p>
+                    {{ if .FileName.Value }}
+                    <a href="/img/comment/{{ .FileName.Value }}" download>Скачать img</a>
+                    {{ end }}
+                    <a href="/admin/cabinet/comment/detail/{{ .Id }}">Редактировать</a>
+                </div>    
+            </div>
+            {{ end }}
+            <div class="Title-Block"><p>История</p></div>
+            {{ range .TaskHistory }}
+            <div class="Comment">
+                {{ if .FirstName.Value }}
+                <div class="Message-Auth"><p>{{ .FirstName.Value }}</p></div>
+                {{ end }}
+                <div class="Message-Text"><p>{{ .Title }}</p></div>
+                <div class="Message-Panel">
+                    <p>{{ .Date.Value }}</p>
+                    <p>IP: {{ .Ip }}</p>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</article>    
+<script src="/js/check_status.js"></script>
+
+{{ template "cabinet_footer.html" }}
+{{ end }}
