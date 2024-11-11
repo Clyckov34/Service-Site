@@ -96,21 +96,6 @@
                 <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
                 <input type="submit" value="Заказать обратную связь">
             </form>
-
-            {{ if .GoogleKey }}
-            <div class="Google">
-                <p><span>Защита от спама reCAPTCHA</span> <a href="https://policies.google.com/privacy?hl=ru" target="_blank">Конфиденциальность</a> и <a href="https://policies.google.com/terms?hl=ru" target="_blank">Условия использования</a></p>
-            </div>
-            <script src="https://www.google.com/recaptcha/api.js?render={{ .GoogleKey }}"></script>
-            <script>
-                grecaptcha.ready(function() {
-                    grecaptcha.execute('{{ .GoogleKey }}', {action: 'submit'}).then(function(token) {
-                        // Add your logic to submit to your backend server here.
-                        document.getElementById("g-recaptcha-response").value = token;
-                    });
-                });
-            </script>
-            {{ end }}
         </div>
     </div>
 </article>    

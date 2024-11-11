@@ -2,7 +2,6 @@ package page_home
 
 import (
 	"net/http"
-	"os"
 	"repair/service/lending/page_home"
 
 	"github.com/gin-gonic/gin"
@@ -46,7 +45,6 @@ func (m *Page) Home(url string) {
 			"Service":       ser.Data,
 			"Portfolio":     portf.Data,
 			"SocialNetwork": socNet.Data,
-			"GoogleKey":     os.Getenv("GOOGLE_KEY_SITE"),
 		})
 
 	})

@@ -29,9 +29,7 @@ services:                         # Создание сервисов
 
       - ./static/:/static/        # Статические файлы
     env_file:
-      - .env
-    environment:
-      - NGINX_HOST=${DOMAIN}       
+      - .env      
 
 
   # https://hub.docker.com/_/mysql
@@ -104,11 +102,3 @@ services:                         # Создание сервисов
       - MAIL_LOGIN=${MAIL_LOGIN}
       - MAIL_PASSWORD=${MAIL_PASSWORD}
       - MAIL_PORT=${MAIL_PORT}
-    
-    #Google Капча
-      - GOOGLE_KEY_SITE=${GOOGLE_KEY_SITE}
-      - GOOGLE_KEY_SERVER=${GOOGLE_KEY_SERVER}
-      - GOOGLE_SCORE=${GOOGLE_SCORE}
-
-    #Site
-      - DOMAIN=${DOMAIN}

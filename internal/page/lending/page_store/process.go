@@ -2,10 +2,8 @@ package page_store
 
 import (
 	"net/http"
-	"os"
 	"repair/pkg/check"
 	"repair/pkg/errs"
-	"repair/pkg/google"
 	"repair/service/lending/page_store"
 	"strconv"
 	"strings"
@@ -68,7 +66,6 @@ func (m *Page) Detail(url string) {
 			"Sale":        store.ServiceSale,
 			"Text":        store.ServiceText,
 			"Img":         store.ServiceFileName,
-			"GoogleKey":   os.Getenv("GOOGLE_KEY_SITE"),
 		})
 
 	})
@@ -78,13 +75,6 @@ func (m *Page) Detail(url string) {
 // Send отправка заявки на ремонт на mail и в бд
 func (m *Page) Send(url string) {
 	m.Router.POST(url, func(ctx *gin.Context) {
-
-		err := google.CaptchaCheck(ctx)
-		if err != nil {
-			errs.HTTPStatusJson(ctx, http.StatusForbidden, err.Error())
-			return
-		}
-
 		IdCategory, err := strconv.Atoi(ctx.PostForm("IdCategory"))
 		if err != nil {
 			errs.HTTPStatusJson(ctx, http.StatusInternalServerError, err.Error())
@@ -108,7 +98,7 @@ func (m *Page) Send(url string) {
 		}
 
 		store, err := task.CreateTask("To Do")
-		if err != nil {	
+		if err != nil {
 			errs.HTTPStatusJson(ctx, http.StatusInternalServerError, err.Error())
 			return
 		}

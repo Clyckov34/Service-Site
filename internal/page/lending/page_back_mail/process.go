@@ -3,7 +3,6 @@ package page_back_mail
 import (
 	"net/http"
 	"repair/pkg/errs"
-	"repair/pkg/google"
 	"repair/service/lending/page_back_mail"
 	"strings"
 
@@ -17,12 +16,6 @@ type Page struct {
 // Send запрос на обратную связь. Отправка на почту
 func (m *Page) Send(url string) {
 	m.Router.POST(url, func(ctx *gin.Context) {
-
-		err := google.CaptchaCheck(ctx)
-		if err != nil {
-			errs.HTTPStatusJson(ctx, http.StatusForbidden, err.Error())
-			return
-		}
 
 		var mail = page_back_mail.Param{
 			FirstName: strings.TrimSpace(ctx.PostForm("FirstName")),
