@@ -154,17 +154,6 @@
                         <li><code>MAIL_PORT</code> - Порт. (По умолчанию: 465)</li>
                         <a href="https://yandex.ru/support/mail/mail-clients/others.html" target="_blank">Документация Яндекс.Почта</a>, можно использовать алтернативные почтовые сервера например от Google, Mail.RU
                     </ul>
-                <li>Отредактировать переменные Google reCAPTCHA v3:</li>
-                    <ul>
-                        <li><code>GOOGLE_KEY_SITE</code> - Ключ клиента</li>
-                        <li><code>GOOGLE_KEY_SERVER</code> - Ключ сервера</li>
-                        <li><code>GOOGLE_SCORE</code> - Оценка от 0 - Бот, 1 - Пользователь (По умолчанию: 0.8)</li>
-                        <a href="https://www.google.com/recaptcha/admin" target="_blank">Личный кабинет Google reCAPTCHA</a>
-                    </ul>
-                <li>Site</li>
-                    <ul>
-                        <li><code>DOMAIN</code> - Домен сайта. Образец: mydomen.ru</li>
-                    </ul>        
             </ol>
     </ol>
 </div>
